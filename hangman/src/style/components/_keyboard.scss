@@ -1,0 +1,16 @@
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+
+  .key {
+    width: 60px;
+    height: 56px;
+    outline: 1px solid #000000;
+    border: 1px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
