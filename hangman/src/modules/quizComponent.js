@@ -1,12 +1,14 @@
 import { createElement } from "./helpers";
 
+let wordArr = [];
+let quizWordContainer = null;
 function createComponent(quizQuestion) {
   const wordToGuess = quizQuestion.answer.toUpperCase();
   const wordLength = quizQuestion.answer.length;
-  const wordArr = wordToGuess.split("");
+  wordArr = wordToGuess.split("");
   console.log(wordLength + " " + wordToGuess);
   const quiz = createElement("div", ["quiz"]);
-  const quizWordContainer = createElement("div", [
+  quizWordContainer = createElement("div", [
     "quiz-word",
     "flex",
     "flex-jc-center",
@@ -21,6 +23,7 @@ function createComponent(quizQuestion) {
     ]);
     letterContainer.textContent = word;
     letterContainer.style.borderBottom = "3px solid red";
+    letterContainer.style.color = "white";
     quizWordContainer.append(letterContainer);
   });
 
@@ -39,4 +42,4 @@ function counter() {
   return;
 }
 
-export { createComponent };
+export { createComponent, wordArr, quizWordContainer };

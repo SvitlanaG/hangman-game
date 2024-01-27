@@ -1,4 +1,5 @@
 import { createElement } from "./helpers";
+import { wordArr, quizWordContainer } from "./quizComponent";
 
 function createComponent() {
   const keysArr = [
@@ -49,14 +50,30 @@ function createComponent() {
 
 function keyBtnClickHandler(event) {
   const clickedKeyBtn = event.target.innerText;
-  console.log("Key clicked:", clickedKeyBtn);
+  openLetter(clickedKeyBtn);
 }
 
 function keyPressHandler(event) {
   const pressedKey = event.key;
-  console.log("Key pressed:", pressedKey.toUpperCase());
+  openLetter(pressedKey.toUpperCase());
 }
 
 document.addEventListener("keydown", keyPressHandler);
+
+function isGuessCorrect(letter) {
+  return wordArr.includes(letter);
+}
+
+function openLetter(letterToGuess) {
+  if (isGuessCorrect(letterToGuess)) {
+    const letterDivs = quizWordContainer.querySelectorAll("div");
+    letterDivs.forEach((letter, index) => {
+      if (letterToGuess === letter.textContent) {
+        letter.style.color = "black";
+        letter.style.borderBottom = "3px solid black";
+      }
+    });
+  }
+}
 
 export { createComponent };
