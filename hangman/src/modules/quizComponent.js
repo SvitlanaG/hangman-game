@@ -3,9 +3,10 @@ import { createElement } from "./helpers";
 let wordArr = [];
 let quizWordContainer = null;
 let guessesCounterContainer = null;
+let wordToGuess = "";
 
 function createComponent(quizQuestion) {
-  const wordToGuess = quizQuestion.answer.toUpperCase();
+  wordToGuess = quizQuestion.answer.toUpperCase();
   const wordLength = quizQuestion.answer.length;
   wordArr = wordToGuess.split("");
   const quiz = createElement("div", ["quiz"]);
@@ -43,4 +44,10 @@ function createComponent(quizQuestion) {
   return quiz;
 }
 
-export { createComponent, wordArr, quizWordContainer, guessesCounterContainer };
+export {
+  createComponent,
+  wordArr,
+  quizWordContainer,
+  guessesCounterContainer,
+  wordToGuess,
+};
