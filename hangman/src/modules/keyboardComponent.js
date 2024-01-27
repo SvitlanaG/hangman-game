@@ -4,8 +4,10 @@ import {
   quizWordContainer,
   guessesCounterContainer,
 } from "./quizComponent";
+import * as Modal from "./modalComponent";
 
 let incorrectGuessesCounter = 0;
+const maxIncorrectNumber = 6;
 
 function createComponent() {
   const keysArr = [
@@ -58,12 +60,14 @@ function keyBtnClickHandler(event) {
   const clickedKeyBtn = event.target.innerText;
   openLetter(clickedKeyBtn);
   countIncorrectGuesses(clickedKeyBtn);
+  createModal();
 }
 
 function keyPressHandler(event) {
   const pressedKey = event.key;
   openLetter(pressedKey.toUpperCase());
   countIncorrectGuesses(pressedKey.toUpperCase());
+  createModal();
 }
 
 document.addEventListener("keydown", keyPressHandler);
@@ -85,9 +89,26 @@ function openLetter(letterToGuess) {
 }
 
 function countIncorrectGuesses(letterToGuess) {
-  if (!isGuessCorrect(letterToGuess)) {
+  if (!isGuessCorrect(letterToGuess) && !isEndGame()) {
     incorrectGuessesCounter += 1;
     guessesCounterContainer.innerHTML = `${incorrectGuessesCounter} / 6`;
+  }
+}
+
+function isEndGame() {
+  return incorrectGuessesCounter === maxIncorrectNumber || areAllLettersOpen();
+}
+
+function areAllLettersOpen() {
+  const letterDivs = Array.from(quizWordContainer.querySelectorAll("div"));
+  return letterDivs.every((letter) => letter.style.color === "black");
+}
+
+function createModal() {
+  if (isEndGame()) {
+    const modal = Modal.createComponent(areAllLettersOpen());
+    const body = document.getElementsByTagName("body")[0];
+    body.append(modal);
   }
 }
 

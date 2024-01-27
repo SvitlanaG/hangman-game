@@ -1,7 +1,7 @@
 import { createElement } from "./helpers";
 import { wordToGuess } from "./quizComponent";
 
-function createComponent() {
+function createComponent(isWinner) {
   const modal = createElement("div", ["modal"]);
   const container = createElement("div", [
     "modal-container",
@@ -10,7 +10,9 @@ function createComponent() {
     "flex-jc-center",
   ]);
   const message = createElement("h2", ["modal-message"]);
-  message.textContent = "Hooray, you win! / Unfortunately, you lost!";
+  message.textContent = isWinner
+    ? "Hooray, you win!"
+    : "Unfortunately, you lost!";
   const word = createElement("div", ["modal-word"]);
   word.textContent = `The secret word is ***${wordToGuess}***`;
   const button = createElement("button", ["modal-button"]);
