@@ -61,6 +61,7 @@ function keyBtnClickHandler(event) {
   const clickedKeyBtn = event.target.innerText;
   openLetter(clickedKeyBtn);
   countIncorrectGuesses(clickedKeyBtn);
+  disableButton(event);
   createModal();
 }
 
@@ -119,4 +120,9 @@ function showBodyPart() {
   bodyPart.classList.remove("hidden");
 }
 
+function disableButton(event) {
+  event.target.classList.add("disabled");
+  event.target.disabled = true;
+  event.target.removeEventListener("click", keyBtnClickHandler);
+}
 export { createComponent, incorrectGuessesCounter };
