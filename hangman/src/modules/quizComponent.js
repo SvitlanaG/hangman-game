@@ -2,11 +2,12 @@ import { createElement } from "./helpers";
 
 let wordArr = [];
 let quizWordContainer = null;
+let guessesCounterContainer = null;
+
 function createComponent(quizQuestion) {
   const wordToGuess = quizQuestion.answer.toUpperCase();
   const wordLength = quizQuestion.answer.length;
   wordArr = wordToGuess.split("");
-  console.log(wordLength + " " + wordToGuess);
   const quiz = createElement("div", ["quiz"]);
   quizWordContainer = createElement("div", [
     "quiz-word",
@@ -30,16 +31,16 @@ function createComponent(quizQuestion) {
   const hint = createElement("h2", ["hint", "flex", "flex-fw-wrap"]);
   hint.textContent = "Hint: " + quizQuestion.question;
   const incorrectGuesses = createElement("p", ["hint"]);
-  incorrectGuesses.textContent = "Incorrect guesses: " + counter();
-
+  incorrectGuesses.textContent = "Incorrect guesses: ";
+  guessesCounterContainer = createElement("span", ["counter"]);
+  guessesCounterContainer.textContent = "0 / 6";
+  guessesCounterContainer.after(incorrectGuesses);
+  incorrectGuesses.append(guessesCounterContainer);
   quiz.append(quizWordContainer);
   quiz.append(hint);
   quiz.append(incorrectGuesses);
+
   return quiz;
 }
 
-function counter() {
-  return;
-}
-
-export { createComponent, wordArr, quizWordContainer };
+export { createComponent, wordArr, quizWordContainer, guessesCounterContainer };

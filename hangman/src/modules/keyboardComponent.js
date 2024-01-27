@@ -1,5 +1,11 @@
 import { createElement } from "./helpers";
-import { wordArr, quizWordContainer } from "./quizComponent";
+import {
+  wordArr,
+  quizWordContainer,
+  guessesCounterContainer,
+} from "./quizComponent";
+
+let incorrectGuessesCounter = 0;
 
 function createComponent() {
   const keysArr = [
@@ -51,11 +57,13 @@ function createComponent() {
 function keyBtnClickHandler(event) {
   const clickedKeyBtn = event.target.innerText;
   openLetter(clickedKeyBtn);
+  countIncorrectGuesses(clickedKeyBtn);
 }
 
 function keyPressHandler(event) {
   const pressedKey = event.key;
   openLetter(pressedKey.toUpperCase());
+  countIncorrectGuesses(pressedKey.toUpperCase());
 }
 
 document.addEventListener("keydown", keyPressHandler);
@@ -76,4 +84,11 @@ function openLetter(letterToGuess) {
   }
 }
 
-export { createComponent };
+function countIncorrectGuesses(letterToGuess) {
+  if (!isGuessCorrect(letterToGuess)) {
+    incorrectGuessesCounter += 1;
+    guessesCounterContainer.innerHTML = `${incorrectGuessesCounter} / 6`;
+  }
+}
+
+export { createComponent, incorrectGuessesCounter };
