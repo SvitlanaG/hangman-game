@@ -1,0 +1,36 @@
+.gallows {
+  &-body {
+    position: relative;
+    top: -432px;
+    left: 254px;
+
+    #head {
+      position: absolute;
+    }
+    #body {
+      position: absolute;
+      top: 104px;
+      left: 47px;
+    }
+    #hand-one {
+      position: absolute;
+      top: 110px;
+      left: -24px;
+    }
+    #hand-two {
+      position: absolute;
+      top: 110px;
+      left: 55px;
+    }
+    #leg-one {
+      position: absolute;
+      top: 240px;
+      left: -24px;
+    }
+    #leg-two {
+      position: absolute;
+      top: 240px;
+      left: 55px;
+    }
+  }
+}

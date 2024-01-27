@@ -3,6 +3,7 @@ import pieceOfPaper from "../assets/images/piece-of-paper.jpg";
 import gallows from "../assets/images/gallows.png";
 import * as Quiz from "./quizComponent";
 import * as Keyboard from "./keyboardComponent";
+import * as GallowsBody from "./gallowsComponent";
 import { quizJSON } from "../quizQuestions";
 
 function createComponent() {
@@ -28,10 +29,11 @@ function createComponent() {
   const titleContainer = createElement("div", []);
   const title = createElement("h1", []);
   title.textContent = "HANGMAN GAME";
-  const gallowsContainer = createElement("div", []);
+  const gallowsContainer = createElement("div", ["gallows-container"]);
   const img = createElement("img", []);
   img.src = gallows;
   img.alt = "Gallows";
+  const gallowsBody = GallowsBody.createComponent();
 
   const quizContainer = createElement("div", []);
   const keyboardContainer = createElement("div", []);
@@ -40,6 +42,7 @@ function createComponent() {
 
   titleContainer.append(title);
   gallowsContainer.append(img);
+  gallowsContainer.append(gallowsBody);
   gallowsPart.append(titleContainer);
   gallowsPart.append(gallowsContainer);
   frame.append(gallowsPart);

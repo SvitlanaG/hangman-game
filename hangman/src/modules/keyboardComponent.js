@@ -5,6 +5,7 @@ import {
   guessesCounterContainer,
 } from "./quizComponent";
 import * as Modal from "./modalComponent";
+import { gallowsBody } from "./gallowsComponent";
 
 let incorrectGuessesCounter = 0;
 const maxIncorrectNumber = 6;
@@ -92,6 +93,7 @@ function countIncorrectGuesses(letterToGuess) {
   if (!isGuessCorrect(letterToGuess) && !isEndGame()) {
     incorrectGuessesCounter += 1;
     guessesCounterContainer.innerHTML = `${incorrectGuessesCounter} / 6`;
+    showBodyPart();
   }
 }
 
@@ -110,6 +112,11 @@ function createModal() {
     const body = document.getElementsByTagName("body")[0];
     body.append(modal);
   }
+}
+
+function showBodyPart() {
+  let bodyPart = gallowsBody.getElementsByClassName("hidden")[0];
+  bodyPart.classList.remove("hidden");
 }
 
 export { createComponent, incorrectGuessesCounter };
