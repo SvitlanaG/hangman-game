@@ -41,9 +41,22 @@ function createComponent() {
     ]);
     keyBtn.textContent = key;
     keyboard.append(keyBtn);
+    keyBtn.addEventListener("click", keyBtnClickHandler);
   });
 
   return keyboard;
 }
+
+function keyBtnClickHandler(event) {
+  const clickedKeyBtn = event.target.innerText;
+  console.log("Key clicked:", clickedKeyBtn);
+}
+
+function keyPressHandler(event) {
+  const pressedKey = event.key;
+  console.log("Key pressed:", pressedKey.toUpperCase());
+}
+
+document.addEventListener("keydown", keyPressHandler);
 
 export { createComponent };

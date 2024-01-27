@@ -12,5 +12,13 @@
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
+
+    &:hover {
+      background-color: $graphite-color;
+    }
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    }
   }
 }
