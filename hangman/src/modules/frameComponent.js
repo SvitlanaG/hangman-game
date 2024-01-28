@@ -26,7 +26,7 @@ function createComponent() {
     "flex-fd-column",
     "flex-jc-center",
   ]);
-  const titleContainer = createElement("div", []);
+  const titleContainer = createElement("div", ["frame-title"]);
   const title = createElement("h1", []);
   title.textContent = "HANGMAN GAME";
   const gallowsContainer = createElement("div", ["gallows-container"]);

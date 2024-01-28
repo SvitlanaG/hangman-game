@@ -3,6 +3,11 @@
   grid-template-columns: repeat(9, 1fr);
   gap: 4px;
 
+  @include breakpoint-down(medium) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .key {
     width: 60px;
     height: 56px;
@@ -13,12 +18,14 @@
     border-radius: 8px;
     cursor: pointer;
 
-    &:hover {
-      background-color: $graphite-color;
-    }
-    &:active {
-      transform: translateY(1px);
-      box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    @media (hover: hover) {
+      &:hover {
+        background-color: $graphite-color;
+      }
+      &:active {
+        transform: translateY(1px);
+        box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+      }
     }
   }
 }

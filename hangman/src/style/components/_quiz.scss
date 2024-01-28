@@ -1,3 +1,21 @@
+.quiz {
+  &-word {
+    @include breakpoint-down(medium) {
+      div {
+        width: 50px;
+        height: 44px;
+      }
+    }
+    @include breakpoint-down(small) {
+      div {
+        width: 30px;
+        height: 24px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
 .hint {
   max-width: 600px;
   padding-bottom: 32px;

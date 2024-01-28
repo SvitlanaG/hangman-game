@@ -1,9 +1,21 @@
 .frame {
+  overflow-x: hidden;
   max-width: $max-width;
   margin: 32px auto;
-  padding: 30px 10px;
-  width: 100%;
+  padding: 24px;
+  width: 90%;
   border-radius: 100px;
   border: 8px solid $graphite-color;
   outline: 4px solid #ffffff;
+
+  @include breakpoint-down(medium) {
+    padding: 4px;
+    border-radius: 40px;
+  }
+
+  &-title {
+    @include breakpoint-down(small) {
+      font-size: small;
+    }
+  }
 }
