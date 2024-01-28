@@ -1,8 +1,10 @@
 import { createElement } from "./helpers";
 import { wordToGuess } from "./quizComponent";
 
+let modal = null;
+
 function createComponent(isWinner) {
-  const modal = createElement("div", ["modal"]);
+  modal = createElement("div", ["modal"]);
   const container = createElement("div", [
     "modal-container",
     "flex",
@@ -17,11 +19,18 @@ function createComponent(isWinner) {
   word.textContent = `The secret word is ***${wordToGuess}***`;
   const button = createElement("button", ["modal-button"]);
   button.textContent = "play again";
-
   button.addEventListener("click", function () {
     location.reload();
     modal.remove();
   });
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      location.reload();
+      modal.remove();
+    }
+  };
 
   container.append(message);
   container.append(word);

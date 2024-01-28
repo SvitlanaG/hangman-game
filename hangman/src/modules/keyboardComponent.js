@@ -9,9 +9,10 @@ import { gallowsBody } from "./gallowsComponent";
 
 let incorrectGuessesCounter = 0;
 const maxIncorrectNumber = 6;
+let keysArr = [];
 
 function createComponent() {
-  const keysArr = [
+  keysArr = [
     "Q",
     "W",
     "E",
@@ -38,7 +39,6 @@ function createComponent() {
     "B",
     "N",
     "M",
-    "-",
   ];
   const keyboard = createElement("div", ["keyboard"]);
 
@@ -50,6 +50,7 @@ function createComponent() {
       "flex-ai-center",
     ]);
     keyBtn.textContent = key;
+    keyBtn.id = key;
     keyboard.append(keyBtn);
     keyBtn.addEventListener("click", keyBtnClickHandler);
   });
@@ -66,10 +67,11 @@ function keyBtnClickHandler(event) {
 }
 
 function keyPressHandler(event) {
-  const pressedKey = event.key;
-  openLetter(pressedKey.toUpperCase());
-  countIncorrectGuesses(pressedKey.toUpperCase());
-  createModal();
+  const pressedKey = event.key.toUpperCase();
+  if (keysArr.includes(pressedKey)) {
+    const virtualBtn = document.getElementById(pressedKey);
+    virtualBtn.click();
+  }
 }
 
 document.addEventListener("keydown", keyPressHandler);
@@ -84,7 +86,7 @@ function openLetter(letterToGuess) {
     letterDivs.forEach((letter, index) => {
       if (letterToGuess === letter.textContent) {
         letter.style.color = "black";
-        letter.style.borderBottom = "3px solid black";
+        letter.style.borderBottom = "3px solid transparent";
       }
     });
   }
