@@ -15,6 +15,7 @@ function createComponent() {
     "flex-fw-wrap",
     "flex-jc-space-evenly",
   ]);
+  frame.id = "frame";
   frame.style.background = `url(${pieceOfPaper}) no-repeat center / cover`;
   const gallowsPart = createElement("div", [
     "flex",

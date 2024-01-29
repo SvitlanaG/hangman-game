@@ -1,5 +1,7 @@
 import { createElement } from "./helpers";
 import { wordToGuess } from "./quizComponent";
+import * as Frame from "./frameComponent";
+import * as Keyboard from "./keyboardComponent";
 
 let modal = null;
 
@@ -20,17 +22,14 @@ function createComponent(isWinner) {
   const button = createElement("button", ["modal-button"]);
   button.textContent = "play again";
   button.addEventListener("click", function () {
-    location.reload();
     modal.remove();
+    const frame = document.getElementById("frame");
+    frame.remove();
+    const newFrameSection = Frame.createComponent();
+    const body = document.getElementsByTagName("body")[0];
+    body.append(newFrameSection);
+    Keyboard.setIncorrectGuessesCounter(0);
   });
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      location.reload();
-      modal.remove();
-    }
-  };
 
   container.append(message);
   container.append(word);

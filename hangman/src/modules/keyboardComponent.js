@@ -127,4 +127,17 @@ function disableButton(event) {
   event.target.disabled = true;
   event.target.removeEventListener("click", keyBtnClickHandler);
 }
-export { createComponent, incorrectGuessesCounter };
+
+function getIncorrectGuessesCounter() {
+  return sharedValue;
+}
+
+function setIncorrectGuessesCounter(newValue) {
+  incorrectGuessesCounter = newValue;
+}
+
+export {
+  createComponent,
+  getIncorrectGuessesCounter,
+  setIncorrectGuessesCounter,
+};
