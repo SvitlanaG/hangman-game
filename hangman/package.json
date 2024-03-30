@@ -8,10 +8,18 @@
     "build-dev": "webpack",
     "build-prod": "webpack --node-env=production",
     "clear": "rd /s /q dist",
-    "deploy": "gh-pages -d dist -e hangman"
+    "deploy": "gh-pages -d dist -e hangman-game"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SvitlanaG/hangman-game/tree/main"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
   "author": "svitlanagrytsai",
   "license": "ISC",
+  "homepage": "https://svitlanag.github.io/hangman-game/",
   "devDependencies": {
     "@babel/core": "^7.23.5",
     "@babel/preset-env": "^7.23.5",
